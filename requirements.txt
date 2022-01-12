@@ -1,0 +1,9 @@
+SQLAlchemy==1.4.28
+PyYAML==6.0
+Flask-SQLAlchemy==2.5.1
+Flask==2.0.2
+discord==1.0.1
+discord.py==1.6.0
+youtube-dl==2021.2.10
+youtube-search==2.1.0
+youtube-search-python==1.5.3
