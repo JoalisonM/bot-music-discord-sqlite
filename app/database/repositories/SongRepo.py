@@ -15,7 +15,7 @@ class SongRepo:
         songs = db.session.query(Song).filter(Song.playlistName==playlistName).all()
         jsonsongs = []
         for i in range(len(songs)):
-            jsonsongs.append(songs[i])
+            jsonsongs.append(songs[i].toJson())
         return jsonsongs
 
     @staticmethod
@@ -23,5 +23,5 @@ class SongRepo:
         songs = db.session.query(Song).all()
         jsonsongs = []
         for i in range(len(songs)):
-            jsonsongs.append(songs[i])
+            jsonsongs.append(songs[i].toJson())
         return jsonsongs

@@ -26,5 +26,5 @@ bot = commands.Bot(botPrefix, intents=intents)
 
 bot.add_cog(BotMusic(bot))
 
-print("INDO")
+print("Bot online!")
 bot.run(tokenDiscord)

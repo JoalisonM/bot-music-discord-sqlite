@@ -56,7 +56,7 @@ class BotMusic(commands.Cog):
     async def play(self, ctx, *args):
         query = " ".join(args)
         voice_channel = ctx.author.voice.channel
-        if voice_channel is None:
+        if voice_channel == None:
             await ctx.send("Conecte a um canal de voz!")
         else:
             song = self.searchYoutube(query)

@@ -15,7 +15,7 @@ class PlaylistRepo:
         playlists = db.session.query(Playlist).filter(Playlist.name==playlistName).all()
         jsonplaylists = []
         for i in range(len(playlists)):
-            jsonplaylists.append(playlists[i])
+            jsonplaylists.append(playlists[i].toJson())
         return playlists
 
     @staticmethod
@@ -23,5 +23,5 @@ class PlaylistRepo:
         playlists = db.session.query(Playlist).all()
         jsonplaylists = []
         for i in range(len(playlists)):
-            jsonplaylists.append(playlists[i])
+            jsonplaylists.append(playlists[i].toJson())
         return jsonplaylists
