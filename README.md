@@ -10,7 +10,6 @@ Este repositório guarda o código de uma aplicação que serve para ligar um bo
    3. Instalação do FFMPEG;
 
 2. Configuração do bot.
-3. Ligando o bot.
 
 ## 1. Instalação:
 
