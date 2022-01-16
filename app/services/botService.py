@@ -46,6 +46,7 @@ class BotMusic(commands.Cog):
             else:
                 await self.voice.move_to(self.music_queue[0][1])
             self.music_queue.pop(0)
+            self.voice.stop()
             self.voice.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
         else:
             self.is_playing = False
@@ -57,30 +58,34 @@ class BotMusic(commands.Cog):
         query = " ".join(args)
         voice_channel = ctx.author.voice.channel
         if voice_channel == None:
-            await ctx.send("Conecte a um canal de voz!")
+            await ctx.send("Conecte-se a um canal de voz!")
         else:
             song = self.searchYoutube(query)
             if type(song) == type(True):
                 await ctx.send("Não foi possível baixar a música")
             else:
-                await ctx.send("Música adicionada a fila")
+                await ctx.send("Música adicionada à fila")
                 self.music_queue.append([song, voice_channel, query])
                 if self.is_playing == False:
                     await self.play_music()
-  
+
 
 
     @commands.command(name="skip", help="Pra pular aquela música que o caba tá abusado")
     async def skip(self, ctx):
-        if self.voice != "" and self.voice.is_connected():
+        if not (self.voice == "" or not self.voice.is_connected() or self.voice == None):
+            self.voice.stop()
             await self.play_music()
+        else:
+            await ctx.send("Se conecte ao canal de voz primeiro!")
+            return
 
 
   
     @commands.command(name="leave", help="Disconnecting bot from VC")
     async def leave(self, ctx):
         if(self.voice == "" or not self.voice.is_connected() or self.voice == None):
-            return
+            await ctx.send("Eu não estou em nenhum canal de voz :cry:")
         else:
             await self.voice.disconnect()
 
